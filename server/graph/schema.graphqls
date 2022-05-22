@@ -1,0 +1,32 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+enum Role {
+  Civilian
+  Mafia
+}
+
+type Player {
+  username: String!
+  role: Role!
+  isAlive: Boolean!
+  daysAlive: Int!
+}
+
+type Game {
+  id: ID!
+  Scoreboard: [Player!]!
+  Comments: [String!]!
+}
+
+type Query {
+  game(id: ID!): Game!
+  games(ids: [ID!]!): [Game]!
+  player(username: String!): Player!
+  filter(alive: Boolean!): [Player]!
+}
+
+type Mutation {
+  addComment(gameId: ID!, text: String!): String!
+}
